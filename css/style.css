@@ -1,0 +1,9 @@
+h1,
+h2,
+.box {
+  text-align: center;
+  boder: solid 2px;
+}
+.image:hover {
+  cursor: pointer;
+}
