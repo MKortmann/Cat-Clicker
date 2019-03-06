@@ -1,48 +1,24 @@
 h1,
 h2,
-.column {
+.boxImage {
   text-align: center;
 }
 
-* {
-  box-sizing: border-box;
+select {
+  width: 300px;
+  font-size: 2em;
 }
 
 .h2Clicks {
-  position: absolute;
-  top: 560px;
-  left: 330px;
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   font-size: 2.5em;
 }
 
-.h2Clicks02 {
-  position: absolute;
-  top: 560px;
-  left: 1070px;
-  color: black;
-  text-shadow: -1px 0 red, 0 1px white, 1px 0 white, 0 -1px red;
-  font-size: 2.5em;
-}
 .image:hover {
   cursor: pointer;
 }
 
 .image {
- width: 45%;
-}
-
-.imageCat02 {
-  width: 38.6%;
-}
-
-.row {
-  display: flex;
-}
-
-/* Create two equal columns that sits next to each other */
-.column {
-  flex: 50%;
-  padding: 5px;
+ max-width: 100%;
 }
