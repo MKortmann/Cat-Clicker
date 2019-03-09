@@ -12,20 +12,19 @@ jQuery(document).ready(function($) {
   };
 
   let octopus = {
-    addElementList: function(selection) {
-      selection
+    addElementList: function(selectionOption) {
+      selectionOption
       .each(function(i, element) {
         element.innerText = model.nameCats[i];
       })
     },
 
-    updateSelectionBox: function(selectionBox) {
+    updateSelectionBox: function(selectionBox, clicks, selection) {
       /**If you change the select box: update image and update text*/
         selectionBox
            .change(function() {
-             $(".image")[0].src = "./images/" + $("select")[0].value + ".jpg";
-             $(".clicks").text(model.nameCats[$("select")[0].selectedIndex]  + " number of clicks: " + model.clicks[$("select")[0].selectedIndex]);
-
+             clicks.text(model.nameCats[selection.selectedIndex]  +
+               " number of clicks: " + model.clicks[selection.selectedIndex]);
            })
     },
 
@@ -34,11 +33,11 @@ jQuery(document).ready(function($) {
         + model.clicks[selection.selectedIndex]);
     },
 
-    clicks: function(image, selection) {
+    clicks: function(selection, clicks) {
 
         model.clicks[selection.selectedIndex]++;
-        $(".image")[0].src = "./images/" + $("select")[0].value + ".jpg";
-        $(".clicks").text(model.nameCats[$("select")[0].selectedIndex]  + " number of clicks: " + model.clicks[$("select")[0].selectedIndex]);
+        clicks.text(model.nameCats[$("select")[0].selectedIndex]  + " number of clicks: "
+        + model.clicks[selection.selectedIndex]);
         // $(".clicks").text(model.nameCats[$("select")[0].selectedIndex]  + " number of clicks: " + model.clicks[$("select")[0].selectedIndex]);
 
     }
@@ -48,13 +47,16 @@ jQuery(document).ready(function($) {
   let view = {
 
   initSelectionBox: function() {
-    let selection = $("select option");
-    octopus.addElementList(selection);
+    let selectionOption = $("select option");
+    octopus.addElementList(selectionOption);
   },
 
   changeSelectionBox: function() {
     let selectionBox = $("select");
-    octopus.updateSelectionBox(selectionBox);
+    let clicks = $(".clicks");
+    let selection = $("select")[0];
+    $(".image")[0].src = "./images/" + $("select")[0].value + ".jpg";
+    octopus.updateSelectionBox(selectionBox, clicks, selection);
   },
 
   render: function() {
@@ -66,9 +68,10 @@ jQuery(document).ready(function($) {
 
   clicks: function() {
     /*Count the clicks at specific image and display it*/
-     let image = $(".image");
+     let image = $(".image")[0];
      let selection = $("select")[0];
-     octopus.clicks(image, selection);
+     let clicks = $(".clicks");
+     octopus.clicks(selection, clicks);
   }
 };
 
