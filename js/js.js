@@ -50,7 +50,12 @@ jQuery(document).ready(function($) {
       return model.ImageUrl[selection.selectedIndex];
     },
     getClicks: function(selection) {
-      return model.clicks[selection.selectedIndex];;
+      return model.clicks[selection.selectedIndex];
+    },
+    save: function(selection, inputName, inputUrl, inputClicked) {
+      model.nameCats[selection.selectedIndex] = inputName.val();
+      model.ImageUrl[selection.selectedIndex] = inputUrl.val();
+      model.clicks[selection.selectedIndex] = inputClicked.val();
     }
 
   }
@@ -102,6 +107,11 @@ jQuery(document).ready(function($) {
       view.inputName.val(octopus.getName(view.selection));
       view.inputUrl.val(octopus.getUrl(view.selection));
       view.inputClicked.val(octopus.getClicks(view.selection));
+    },
+    save: () => {
+      octopus.save(view.selection, view.inputName, view.inputUrl, view.inputClicked);
+      /*Initialization update!*/
+      octopus.updateText(view.clicks, view.selection);
     }
   };
   /*Make it runs*/
