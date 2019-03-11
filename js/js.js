@@ -16,29 +16,22 @@ jQuery(document).ready(function($) {
   };
 
   let octopus = {
+    /**Fill the element of the selection list*/
     addElementList: function(selectionOption) {
       selectionOption
         .each(function(i, element) {
           element.innerText = model.nameCats[i];
         })
     },
-    updateSelectionBox: function(selectionBox, clicks, selection) {
-      /**If you change the select box: update image and update text*/
-      selectionBox
-        .change(function() {
-          clicks.text(model.nameCats[selection.selectedIndex] +
-            " number of clicks: " + model.clicks[selection.selectedIndex]);
-        })
-    },
+    /**If you change the image, update the text*/
     updateText: function(clicks, selection) {
       clicks.text(model.nameCats[selection.selectedIndex] + " number of clicks: " +
         model.clicks[selection.selectedIndex]);
     },
-
+    /**if you clicked, update the data and the text*/
     clicks: function(selection, clicks) {
       model.clicks[selection.selectedIndex]++;
-      clicks.text(model.nameCats[selection.selectedIndex] + " number of clicks: " +
-        model.clicks[selection.selectedIndex]);
+      this.updateText(clicks, selection);
     }
   }
 
@@ -53,22 +46,19 @@ jQuery(document).ready(function($) {
     /**This function start the program! It add the event listener
     and initialize the selectbox and render the image*/
     init: function() {
-      $("select").click(view.changeSelectionBox);
+      $("select").click(view.render);
       $(".image").click(view.clicked);
 
       view.initSelectionBox();
       view.render();
     },
+    /**this function is called only 1 time!*/
     initSelectionBox: function() {
       octopus.addElementList(view.selectionOption);
     },
-
-    changeSelectionBox: function() {
-      /**Updating the image directly here*/
-      $(".image")[0].src = "./images/" + view.selection.value + ".jpg";
-      octopus.updateSelectionBox(view.selectionBox, view.clicks, view.selection);
-    },
     render: function() {
+      /*Update the image!*/
+      $(".image")[0].src = "./images/" + view.selection.value + ".jpg";
       /*Initialization update!*/
       octopus.updateText(view.clicks, view.selection);
     },
