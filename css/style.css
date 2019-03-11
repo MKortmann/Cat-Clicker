@@ -4,6 +4,21 @@ h2,
   text-align: center;
 }
 
+input {
+  min-width: 100%;
+  font-size: 2em;
+}
+
+button {
+  min-width: 30%;
+  font-size: 2em;
+}
+
+#input {
+  text-align: center;
+  font-size: 2em;
+}
+
 select {
   width: 300px;
   font-size: 2em;
